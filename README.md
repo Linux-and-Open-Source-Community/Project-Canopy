@@ -1,96 +1,119 @@
 # Project Canopy: Technical Machine Learning Documentation
 
 # Table of contents
-
-* [Project Overview](#project-overview)
-* [Project Organization](#project-organization)
-* [Project Goals and Objectives](#project-goals-and-objectives)
-  + [Main Goals](#main-goals)
-  + [Specific Objectives](#specific-objectives)
-* [Data Sources](#data-sources)
-* [Data Labelling Strategy](#data-labelling-strategy)
-  + [Introduction](#introduction)
-  + [Importance of Ground Truth Data](#importance-of-ground-truth-data)
-  + [Data Collection for Ground Truth](#data-collection-for-ground-truth)
-  + [Data Splitting for Model Training and Validation](#data-splitting-for-model-training-and-validation)
-  + [Data Augmentation](#data-augmentation)
-  + [Data Versioning and Documentation](#data-versioning-and-documentation)
-* [Data Preprocessing](#data-preprocessing)
-  + [Introduction](#introduction-1)
-  + [Significance of Data Preprocessing](#significance-of-data-preprocessing)
-    - [1. Noise Reduction](#1-noise-reduction)
-    - [2. Data Quality Enhancement](#2-data-quality-enhancement)
-    - [3. Feature Extraction Facilitation](#3-feature-extraction-facilitation)
-    - [4. Compatibility with ML Algorithms](#4-compatibility-with-ml-algorithms)
-  + [Key Data Preprocessing Steps](#key-data-preprocessing-steps)
-    - [1. Image Resampling and Spatial Alignment](#1-image-resampling-and-spatial-alignment)
-    - [2. Radiometric Calibration and Correction](#2-radiometric-calibration-and-correction)
-    - [3. Atmospheric Correction](#3-atmospheric-correction)
-    - [4. Cloud and Shadow Removal](#4-cloud-and-shadow-removal)
-    - [5. Image Enhancement](#5-image-enhancement)
-    - [6. Data Fusion](#6-data-fusion)
-    - [7. Data Format Standardization](#7-data-format-standardization)
-  + [Documentation and Version Control](#documentation-and-version-control)
-* [Model Selection Criteria](#model-selection-criteria)
-  + [1. Task Complexity](#1-task-complexity)
-  + [2. Model Scalability](#2-model-scalability)
-  + [3. Model Interpretability](#3-model-interpretability)
-  + [4. Model Architecture](#4-model-architecture)
-  + [5. Transfer Learning](#5-transfer-learning)
-  + [6. Ensemble Models](#6-ensemble-models)
-* [Modeling Methodology](#modeling-methodology)
-  + [1. Introduction](#1-introduction)
-  + [2. Semantic Segmentation Models](#2-semantic-segmentation-models)
-    - [2.1 U-Net](#21-u-net)
-    - [2.2 DeepLab](#22-deeplab)
-    - [2.3 Mask R-CNN](#23-mask-r-cnn)
-  + [3. Object Detection Models](#3-object-detection-models)
-    - [3.1 YOLO (You Only Look Once)](#31-yolo--you-only-look-once-)
-    - [3.2 Faster R-CNN](#32-faster-r-cnn)
-  + [4. Classification Models](#4-classification-models)
-    - [4.1 Random Forest](#41-random-forest)
-    - [4.2 Convolutional Neural Networks (CNNs)](#42-convolutional-neural-networks--cnns-)
-    - [4.3 Support Vector Machines (SVMs)](#43-support-vector-machines--svms-)
-* [Model Evaluation](#model-evaluation)
-  + [1. Define Specific Metrics](#1-define-specific-metrics)
-    - [1.1. Task-Specific Metrics](#11-task-specific-metrics)
-    - [1.2. Threshold Analysis](#12-threshold-analysis)
-  + [2. Assess Generalization](#2-assess-generalization)
-    - [2.1. Cross-Validation Techniques](#21-cross-validation-techniques)
-    - [2.2. Ensemble Models](#22-ensemble-models)
-  + [3. Prevent Overfitting](#3-prevent-overfitting)
-    - [3.1. Hyperparameter Search](#31-hyperparameter-search)
-    - [3.2. Regularization Methods](#32-regularization-methods)
-    - [3.3. Data Augmentation](#33-data-augmentation)
-  + [4. Test Robustness](#4-test-robustness)
-    - [4.1. Environmental Variability Testing](#41-environmental-variability-testing)
-    - [4.2. Data Quality Assessment](#42-data-quality-assessment)
-    - [4.3. Outlier Detection](#43-outlier-detection)
-* [Model Deployment](#model-deployment)
-  + [1. Plan Deployment](#1-plan-deployment)
-    - [1.1. Hardware Infrastructure](#11-hardware-infrastructure)
-    - [1.2. Scalability](#12-scalability)
-    - [1.3. Resource Optimization](#13-resource-optimization)
-  + [2. Establish Monitoring and Maintenance](#2-establish-monitoring-and-maintenance)
-    - [2.1. Performance Monitoring Dashboard](#21-performance-monitoring-dashboard)
-    - [2.2. Automated Model Health Checks](#22-automated-model-health-checks)
-    - [2.3. Data Pipeline Validation](#23-data-pipeline-validation)
-    - [2.4. Retraining Strategy](#24-retraining-strategy)
-    - [2.5. Failover and Redundancy](#25-failover-and-redundancy)
-* [Ethical Considerations](#ethical-considerations)
-  + [1. Mitigate Bias](#1-mitigate-bias)
-    - [1.1. Bias Detection](#11-bias-detection)
-    - [1.2. Bias Mitigation](#12-bias-mitigation)
-  + [2. Protect Privacy and Data](#2-protect-privacy-and-data)
-    - [2.1. Privacy Impact Assessment](#21-privacy-impact-assessment)
-    - [2.2. Anonymization](#22-anonymization)
-    - [2.3. Data Governance](#23-data-governance)
-* [Conclusion](#conclusion)
-* [Appendix](#appendix)
-  + [1. Previous Iterations' Knowledge Library](#1-previous-iterations--knowledge-library)
-  + [2. Alternate Approaches](#2-alternate-approaches)
-  + [3. Glossary](#3-glossary)
-  + [4. References](#4-references)
+ 
+  * [Project Overview](#project-overview)
+  * [Project Organization](#project-organization)
+  * [Project Goals and Objectives](#project-goals-and-objectives)
+    + [Main Goals](#main-goals)
+    + [Specific Objectives](#specific-objectives)
+  * [Data Sources](#data-sources)
+  * [Data Labelling Strategy](#data-labelling-strategy)
+    + [Introduction](#introduction)
+    + [Importance of Ground Truth Data](#importance-of-ground-truth-data)
+    + [Data Collection for Ground Truth](#data-collection-for-ground-truth)
+    + [Data Splitting for Model Training and Validation](#data-splitting-for-model-training-and-validation)
+    + [Data Augmentation](#data-augmentation)
+    + [Data Versioning and Documentation](#data-versioning-and-documentation)
+  * [Data Preprocessing](#data-preprocessing)
+    + [Introduction](#introduction-1)
+    + [Significance of Data Preprocessing](#significance-of-data-preprocessing)
+      - [1. Noise Reduction](#1-noise-reduction)
+      - [2. Data Quality Enhancement](#2-data-quality-enhancement)
+      - [3. Feature Extraction Facilitation](#3-feature-extraction-facilitation)
+      - [4. Compatibility with ML Algorithms](#4-compatibility-with-ml-algorithms)
+    + [Key Data Preprocessing Steps](#key-data-preprocessing-steps)
+      - [1. Image Resampling and Spatial Alignment](#1-image-resampling-and-spatial-alignment)
+      - [2. Radiometric Calibration and Correction](#2-radiometric-calibration-and-correction)
+      - [3. Atmospheric Correction](#3-atmospheric-correction)
+      - [4. Cloud and Shadow Removal](#4-cloud-and-shadow-removal)
+      - [5. Image Enhancement](#5-image-enhancement)
+      - [6. Data Fusion](#6-data-fusion)
+      - [7. Data Format Standardization](#7-data-format-standardization)
+    + [Documentation and Version Control](#documentation-and-version-control)
+  * [Model Selection Criteria](#model-selection-criteria)
+    + [1. Task Complexity](#1-task-complexity)
+    + [2. Model Scalability](#2-model-scalability)
+    + [3. Model Interpretability](#3-model-interpretability)
+    + [4. Model Architecture](#4-model-architecture)
+    + [5. Transfer Learning](#5-transfer-learning)
+    + [6. Ensemble Models](#6-ensemble-models)
+  * [Modeling Methodology](#modeling-methodology)
+    + [1. Introduction](#1-introduction)
+    + [2. Semantic Segmentation Models](#2-semantic-segmentation-models)
+      - [2.1 U-Net](#21-u-net)
+      - [2.2 DeepLab](#22-deeplab)
+      - [2.3 Mask R-CNN](#23-mask-r-cnn)
+    + [3. Object Detection Models](#3-object-detection-models)
+      - [3.1 YOLO (You Only Look Once)](#31-yolo--you-only-look-once-)
+      - [3.2 Faster R-CNN](#32-faster-r-cnn)
+    + [4. Classification Models](#4-classification-models)
+      - [4.1 Random Forest](#41-random-forest)
+      - [4.2 Convolutional Neural Networks (CNNs)](#42-convolutional-neural-networks--cnns-)
+      - [4.3 Support Vector Machines (SVMs)](#43-support-vector-machines--svms-)
+  * [Model Evaluation](#model-evaluation)
+    + [1. Define Specific Metrics](#1-define-specific-metrics)
+      - [1.1. Task-Specific Metrics](#11-task-specific-metrics)
+      - [1.2. Threshold Analysis](#12-threshold-analysis)
+    + [2. Assess Generalization](#2-assess-generalization)
+      - [2.1. Cross-Validation Techniques](#21-cross-validation-techniques)
+      - [2.2. Ensemble Models](#22-ensemble-models)
+    + [3. Prevent Overfitting](#3-prevent-overfitting)
+      - [3.1. Hyperparameter Search](#31-hyperparameter-search)
+      - [3.2. Regularization Methods](#32-regularization-methods)
+      - [3.3. Data Augmentation](#33-data-augmentation)
+    + [4. Test Robustness](#4-test-robustness)
+      - [4.1. Environmental Variability Testing](#41-environmental-variability-testing)
+      - [4.2. Data Quality Assessment](#42-data-quality-assessment)
+      - [4.3. Outlier Detection](#43-outlier-detection)
+  * [Model Deployment](#model-deployment)
+    + [1. Plan Deployment](#1-plan-deployment)
+      - [1.1. Hardware Infrastructure](#11-hardware-infrastructure)
+      - [1.2. Scalability](#12-scalability)
+      - [1.3. Resource Optimization](#13-resource-optimization)
+    + [2. Establish Monitoring and Maintenance](#2-establish-monitoring-and-maintenance)
+      - [2.1. Performance Monitoring Dashboard](#21-performance-monitoring-dashboard)
+      - [2.2. Automated Model Health Checks](#22-automated-model-health-checks)
+      - [2.3. Data Pipeline Validation](#23-data-pipeline-validation)
+      - [2.4. Retraining Strategy](#24-retraining-strategy)
+      - [2.5. Failover and Redundancy](#25-failover-and-redundancy)
+  * [Dashboard User Interface (UI) Guidelines](#dashboard-user-interface--ui--guidelines)
+    + [1. Data Repository: Ellipsis Drive](#1-data-repository--ellipsis-drive)
+      - [1.1. Data Organization](#11-data-organization)
+      - [1.2. Version Control](#12-version-control)
+      - [1.3. Data Catalog](#13-data-catalog)
+      - [1.4. Access Control](#14-access-control)
+      - [1.5. Data Preprocessing](#15-data-preprocessing)
+    + [2. Rapid Development: Streamlit](#2-rapid-development--streamlit)
+      - [2.1. Agile Prototyping](#21-agile-prototyping)
+      - [2.2. Custom Widgets](#22-custom-widgets)
+      - [2.3. Seamless Integration](#23-seamless-integration)
+      - [2.4. Sharing and Deployment](#24-sharing-and-deployment)
+      - [2.5. Responsive Design](#25-responsive-design)
+      - [2.6. Collaboration](#26-collaboration)
+    + [3. User-Centric Approach](#3-user-centric-approach)
+      - [3.1. User Feedback](#31-user-feedback)
+      - [3.2. Usability Testing](#32-usability-testing)
+      - [3.3. Clear Documentation](#33-clear-documentation)
+      - [3.4. User Training](#34-user-training)
+    + [4. Continuous Improvement](#4-continuous-improvement)
+      - [4.1. Iterative Development](#41-iterative-development)
+      - [4.2. Performance Monitoring](#42-performance-monitoring)
+      - [4.3. Security and Privacy](#43-security-and-privacy)
+  * [Ethical Considerations](#ethical-considerations)
+    + [1. Mitigate Bias](#1-mitigate-bias)
+      - [1.1. Bias Detection](#11-bias-detection)
+      - [1.2. Bias Mitigation](#12-bias-mitigation)
+    + [2. Protect Privacy and Data](#2-protect-privacy-and-data)
+      - [2.1. Privacy Impact Assessment](#21-privacy-impact-assessment)
+      - [2.2. Anonymization](#22-anonymization)
+      - [2.3. Data Governance](#23-data-governance)
+  * [Conclusion](#conclusion)
+  * [Appendix](#appendix)
+    + [1. Previous Iterations' Knowledge Library](#1-previous-iterations--knowledge-library)
+    + [2. Alternate Approaches](#2-alternate-approaches)
+    + [3. Glossary](#3-glossary)
+    + [4. References](#4-references)
 
 ## Project Overview
 
@@ -566,6 +589,92 @@ Establish a model retraining strategy that considers both regular updates and ad
 #### 2.5. Failover and Redundancy
 
 Implement failover mechanisms and redundancy for critical components of your deployment architecture to ensure uninterrupted operation in case of hardware or software failures.
+
+## Dashboard User Interface (UI) Guidelines
+
+Effective dashboard design and implementation are essential for enabling users to interact with data and machine learning models efficiently. The following guidelines outline best practices for creating a user-friendly Dashboard User Interface (UI) for data science and machine learning projects.
+
+### 1. Data Repository: Ellipsis Drive
+
+#### 1.1. Data Organization
+
+- Establish a well-structured data repository that categorizes datasets, including raw data, preprocessed data, and model artifacts.
+
+#### 1.2. Version Control
+
+- Implement version control mechanisms to track changes in datasets and allow users to revert to previous versions. Enable collaboration by tracking contributions.
+
+#### 1.3. Data Catalog
+
+- Maintain a comprehensive data catalog with metadata and descriptions for datasets, facilitating easy discovery and understanding of available data resources.
+
+#### 1.4. Access Control
+
+- Ensure robust access control features to protect data security and compliance. Assign user roles and permissions based on responsibilities and requirements.
+
+#### 1.5. Data Preprocessing
+
+- Integrate basic data preprocessing functionalities, simplifying common data cleaning and transformation tasks for users.
+
+### 2. Rapid Development: Streamlit
+
+#### 2.1. Agile Prototyping
+
+- Leverage Streamlit's rapid development capabilities for creating interactive data apps, allowing agile prototyping and quick iterations.
+
+#### 2.2. Custom Widgets
+
+- Utilize Streamlit's variety of widgets, such as sliders and input fields, to enhance user interaction and data visualization.
+
+#### 2.3. Seamless Integration
+
+- Capitalize on Streamlit's integration with popular Python libraries (e.g., Pandas, Matplotlib) for streamlined data manipulation and visualization.
+
+#### 2.4. Sharing and Deployment
+
+- Deploy Streamlit apps to cloud platforms for broader accessibility. Share interactive reports and insights with ease.
+
+#### 2.5. Responsive Design
+
+- Ensure that Streamlit apps are responsive and adapt to various screen sizes, providing a consistent user experience across devices.
+
+#### 2.6. Collaboration
+
+- Encourage collaborative development by leveraging Streamlit's open-source nature and facilitating the sharing of custom components within the data science community.
+
+### 3. User-Centric Approach
+
+#### 3.1. User Feedback
+
+- Gather user feedback and insights during the design and development process to tailor the dashboard UI to user needs and preferences.
+
+#### 3.2. Usability Testing
+
+- Conduct usability testing to identify and address any usability issues, ensuring that the dashboard is intuitive and easy to navigate.
+
+#### 3.3. Clear Documentation
+
+- Provide clear and accessible documentation for users, explaining how to interact with the dashboard, interpret visualizations, and access data resources.
+
+#### 3.4. User Training
+
+- Offer training sessions or resources to help users effectively utilize the dashboard's features and functionalities.
+
+### 4. Continuous Improvement
+
+#### 4.1. Iterative Development
+
+- Embrace an iterative development approach, continuously enhancing the dashboard UI based on user feedback and changing requirements.
+
+#### 4.2. Performance Monitoring
+
+- Implement performance monitoring to identify and resolve any performance bottlenecks or issues that may arise during usage.
+
+#### 4.3. Security and Privacy
+
+- Ensure that the dashboard complies with security and privacy standards, safeguarding sensitive data and user information.
+
+By adhering to these guidelines, you can create a Dashboard UI that not only supports data exploration, model monitoring, and insights dissemination but also empowers users to make data-driven decisions effectively.
 
 ## Ethical Considerations
 
